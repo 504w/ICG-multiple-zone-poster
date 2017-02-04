@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multipe Zone Poster</title>
+<style type="text/css">
+body{
+	background-color: #414141;
+}
+.main{
+	text-align: center;
+	background-color: #414141;
+	padding: 20px;
+	width: 50%;
+	margin: 0 auto;
+
+}
+.input{
+	width: 30%;
+	height: 30px;
+	border: thin solid #42cef4;
+	background-color: #414141;
+	color: #ffffff;
+	padding-left: 5px;
+}
+
+.button{
+	width: 100px;
+	height: 30px;
+	border: thin solid #42cef4;
+	background-color: #414141;
+	color:#ffffff;
+	transition: 0.25s;
+}
+.button:hover{
+	background-color: #42cef4;
+	color:#000000;
+}
+.text{
+	text-align: center;
+	color :#42cef4;
+	text-decoration: none;
+}
+a{
+	text-decoration: none;
+	color :#ffffff;
+}
+</style>
+</head>
+<body>
+<div class="main">
+	<form action="" method="POST">
+		<input type="text" name="url" placeholder=" URL" class="input" /><br/><br/>
+		<input type="text" name="defacer" placeholder="Defacer" class="input" /><br/><br/>
+		<input type="submit" name="submit" class="button" />
+	</form>
+</div>
+<br/><br/>
+</body>
+</html>
+
+<?php
+set_time_limit(0);
+ini_set("max_execution_time", 300);
+
+if(isset($_POST['url']) && isset($_POST['defacer'])){
+	$domain = $_POST['url'];
+	$defacer = $_POST['defacer'];
+	function zoneH($domain , $defacer){
+		$data = array(
+			"defacer" => $defacer , 
+			"domain1" => $domain ,
+			"hackmode" => "1" ,
+			"reason" => "1"
+			);
+		$url1 = "http://www.zone-h.org/notify/single";
+		$c1 = curl_init();
+		curl_setopt($c1, CURLOPT_URL , $url1);
+		curl_setopt($c1, CURLOPT_POST , true);
+		curl_setopt($c1, CURLOPT_RETURNTRANSFER , true);
+		curl_setopt($c1, CURLOPT_FOLLOWLOCATION , true);
+		curl_setopt($c1, CURLOPT_TIMEOUT , 120);
+		curl_setopt($c1, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($c1, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c1, CURLOPT_REFERER, "http://zone-h.org/");
+		$res = curl_exec($c1);
+		curl_close($c1);
+		if(preg_match("/OK/", $res)){
+			echo "<div class='text'><b>Zone-h.org success !</b> check : <a href=http://www.zone-h.org/archive/notifier=".$defacer.">Here</a></div><br/>";
+		}else{
+			echo "<div class='text'>Zone-h.org Failed !</div><br/>";
+		}
+	}
+
+	function defacerID($domain , $defacer){
+		$data = array(
+			"attacker" => $defacer,
+			"team" => "iran cyber",
+			"poc" => "Not available" ,
+			"url" => $domain
+			);
+		$url2 = "https://www.defacer.id/notify";
+		$c2 = curl_init();
+		curl_setopt($c2, CURLOPT_URL , $url2);
+		curl_setopt($c2, CURLOPT_POST , true);
+		curl_setopt($c2, CURLOPT_RETURNTRANSFER , true);
+		curl_setopt($c2, CURLOPT_TIMEOUT , 120);
+		curl_setopt($c2, CURLOPT_FOLLOWLOCATION , true);
+		curl_setopt($c2, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($c2, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c2, CURLOPT_REFERER, "http://defacer.id");
+		$res = curl_exec($c2);
+		curl_close($c2);
+		if(preg_match("/Sukses/", $res)){
+			echo "<div class='text'><b>Defacer.id success</b> ! Check :<a href='https://www.defacer.id/hacker/iloveu.html'> here </a></div><br/>";
+		}else{
+			echo "<div class='text'>Defacer.id Failed !</div><br/>";
+		}
+	}
+
+	function aljyyosh($domain , $defacer){
+		$url3 = "http://www.aljyyosh.org/single.php";
+		$data = array(
+			"hacker" => $defacer ,
+			"site" => $domain ,
+			"how" => "1" ,
+			"why" => "1",
+			"alj" => "aljyyosh"
+			);
+		$c3 = curl_init();
+		curl_setopt($c3, CURLOPT_URL , $url3);
+		curl_setopt($c3, CURLOPT_POST , true);
+		curl_setopt($c3, CURLOPT_RETURNTRANSFER , true);
+		curl_setopt($c3, CURLOPT_FOLLOWLOCATION , true);
+		curl_setopt($c3, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($c3, CURLOPT_TIMEOUT , 120);
+		curl_setopt($c3, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c3, CURLOPT_REFERER, "http://www.aljyyosh.org");
+		$res = curl_exec($c3);
+		curl_close($c3);
+		if(preg_match("/OK/", $res)){
+			echo "<div class='text'><b>aljyyosh.org success !</b> check : <a href=http://www.aljyyosh.org/onhold.php>Here</a></div><br/>";
+		}else{
+			echo "<div class='text'>aljyyosh.org Failed !</div><br/>";
+		}
+	}
+
+	function attackH($domain , $defacer){
+		$url4 = "http://www.attack-h.co/index.php?sayfa=kontrol";
+		$data = array(
+			"hacker" => $defacer ,
+			"site" => $domain ,
+			"gkodumuz" => "123456" ,
+			"zgkod" => "123456" ,
+			"sunucu" => "162.158.90.217"
+			);
+		$c4 = curl_init();
+		curl_setopt($c4, CURLOPT_URL , $url4);
+		curl_setopt($c4, CURLOPT_POST , true);
+		curl_setopt($c4, CURLOPT_RETURNTRANSFER , true);
+		curl_setopt($c4, CURLOPT_FOLLOWLOCATION , true);
+		curl_setopt($c4, CURLOPT_TIMEOUT , 120);
+		curl_setopt($c4, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($c4, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c4, CURLOPT_REFERER, "http://www.attack-h.co/index.php?sayfa=defaceadd");
+		$res = curl_exec($c4);
+		curl_close($c4);
+		if(preg_match("/Girdiğiniz Adres'in doğru olduğuna emin olunuz!
+/", $res) || preg_match("/Bu adres zaten kayıtlı!
+/", $res)){
+			echo "<div class='text'>attack-h.co Failed !</div><br/>";
+		}else{
+			echo "<div class='text'><b>attack-h.co success !</b> check : <a href=http://www.attack-h.co/index.php?sayfa=onhold>Here</a></div><br/>";
+		}
+	}
+
+	function mirr0r($domain , $defacer){
+		$url5 = "http://mirr0r.org/save.php";
+		$data = array(
+			"hacker" => $defacer ,
+			"site" => $domain ,
+			"submit" => "Save" 
+			);
+		$c5 = curl_init();
+		curl_setopt($c5, CURLOPT_URL , $url5);
+		curl_setopt($c5, CURLOPT_POST , true);
+		curl_setopt($c5, CURLOPT_RETURNTRANSFER , true);
+		curl_setopt($c5, CURLOPT_FOLLOWLOCATION , true);
+		curl_setopt($c5, CURLOPT_TIMEOUT , 120);
+		curl_setopt($c5, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($c5, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c5, CURLOPT_REFERER, "http://mirr0r.org/add.php");
+		$res = curl_exec($c5);
+		curl_close($c5);
+		if(preg_match("/Deface: Bu adres zaten son 6 ay içinde kayıtlı!/", $res) || preg_match("/Girdiğiniz Adres'in doğru olduğuna emin olunuz!
+/", $res)){
+			echo "<div class='text'>mirr0r.org Failed !</div><br/>";
+	}else{
+			echo "<div class='text'><b>mirr0r.org success !</b> check : <a href=http://mirr0r.org/hacker/iloveu>Here</a></div><br/>";
+	}
+}
+zoneH($domain , $defacer);
+defacerID($domain , $defacer);
+aljyyosh($domain , $defacer);
+attackH($domain , $defacer);
+mirr0r($domain , $defacer);
+}
